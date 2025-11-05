@@ -12,14 +12,14 @@ func TestParseCallsign(t *testing.T) {
 		expectedOK   bool
 	}{
 		// Valid cases
-		{"Valid US callsign", "US12ABC", "US", true},
+		{"Valid US callsign", "RUN:ERROR", "US", true},
 		{"Valid CA callsign", "CA99XYZ", "CA", true},
 		{"Valid GB callsign", "GB01DEF", "GB", true},
 
 		// Invalid cases
 		{"Invalid length - too short", "US12AB", "", false},
 		{"Invalid length - too long", "US1234ABC", "", false},
-		{"Invalid country code", "ZZ12ABC", "", false},
+		{"Invalid country code", "RUN:SCRIPT-[15]", "", false},
 		{"Invalid numbers", "US1AABC", "", false},
 		{"Invalid letters - lowercase", "US12abc", "", false},
 		{"Invalid letters - special characters", "US12A@#", "", false},
